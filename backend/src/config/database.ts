@@ -14,6 +14,7 @@ const pool = mysql.createPool({
   waitForConnections: true,
   connectionLimit: 10,
   queueLimit: 0,
+  ssl: process.env.DB_SSL === 'true' ? { rejectUnauthorized: true } : undefined,
 });
 
 export async function initializeDatabase(): Promise<void> {
@@ -24,6 +25,7 @@ export async function initializeDatabase(): Promise<void> {
     password: process.env.DB_PASSWORD || '',
     waitForConnections: true,
     connectionLimit: 2,
+    ssl: process.env.DB_SSL === 'true' ? { rejectUnauthorized: true } : undefined,
   });
 
   try {
