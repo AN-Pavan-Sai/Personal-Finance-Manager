@@ -18,21 +18,7 @@ const pool = mysql.createPool({
 });
 
 export async function initializeDatabase(): Promise<void> {
-  const tempPool = mysql.createPool({
-    host: process.env.DB_HOST || 'localhost',
-    port: parseInt(process.env.DB_PORT || '3306'),
-    user: process.env.DB_USER || 'root',
-    password: process.env.DB_PASSWORD || '',
-    waitForConnections: true,
-    connectionLimit: 2,
-    ssl: process.env.DB_SSL === 'true' ? { rejectUnauthorized: false } : undefined,
-  });
-
   try {
-    const dbName = process.env.DB_NAME || 'finance_manager';
-    await tempPool.query(`CREATE DATABASE IF NOT EXISTS \`${dbName}\``);
-    await tempPool.end();
-
     const schemaPath = path.resolve(__dirname, 'schema.sql');
     const schema = fs.readFileSync(schemaPath, 'utf-8');
     const statements = schema

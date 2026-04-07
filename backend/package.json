@@ -20,7 +20,7 @@
   },
   "scripts": {
     "dev": "nodemon src/server.ts",
-    "start": "ts-node src/server.ts",
+    "start": "node dist/server.js",
     "build": "tsc && cp src/config/schema.sql dist/config/"
   }
 }
