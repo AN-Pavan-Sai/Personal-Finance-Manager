@@ -125,7 +125,7 @@ export default function DashboardPage() {
       {/* Header */}
       <div className="animate-fade-in">
         <h1 className="text-3xl font-bold text-white">
-          {getGreeting()}, {user?.name?.split(' ')[0]} 👋
+          {getGreeting()}, {user?.name?.split(' ')[0]}
         </h1>
         <p className="text-dark-400 mt-1">Here's your financial overview for today</p>
       </div>
