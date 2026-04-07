@@ -3,39 +3,50 @@
 ```mermaid
 classDiagram
 
-class Transaction {
-  +string id
-  +float amount
-  +date date
-  +string category
-  +getDetails()
-}
-
-class Expense {
-  +string paymentMethod
-  +addExpense()
-}
-
-class Income {
-  +string source
-  +addIncome()
-}
-
-class Category {
-  +string id
+class User {
+  <<interface>>
+  +number id
   +string name
+  +string email
+  +string password
+  +Date created_at
+}
+
+class Transaction {
+  <<interface>>
+  +number id
+  +number user_id
+  +number amount
+  +string category
+  +string payment_method
   +string description
+  +string transaction_date
+  +Date created_at
 }
 
-class FinanceManager {
-  +addTransaction()
-  +calculateBalance()
-  +generateReport()
-  +saveData()
-  +loadData()
+class AuthService {
+  <<module>>
+  +registerUser(name, email, password)
+  +loginUser(email, password)
+  +getUserById(userId)
 }
 
-Transaction <|-- Expense
-Transaction <|-- Income
-Transaction --> Category
-FinanceManager --> Transaction
+class TransactionService {
+  <<module>>
+  +createTransaction(data)
+  +getTransactions(userId, page, limit, filters)
+  +getTransactionById(id, userId)
+  +updateTransaction(id, userId, data)
+  +deleteTransaction(id, userId)
+}
+
+class DashboardService {
+  <<module>>
+  +getDashboardSummary(userId, month, year)
+}
+
+AuthService --> User : manages
+TransactionService --> Transaction : manages
+DashboardService --> Transaction : aggregates
+User "1" --> "*" Transaction : owns
+```

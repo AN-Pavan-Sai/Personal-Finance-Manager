@@ -1,24 +1,28 @@
 # Use Case Diagram
 
 ## Actors
-- User
+- **User**: The individual tracking their personal finances.
 
 ## Use Cases
-- Add Income
-- Add Expense
-- View Balance
-- View Reports
-- Categorize Transactions
-- Save Data
-- Load Data
+- Register Account
+- Login to Account
+- Add a Transaction
+- Edit a Transaction
+- Delete a Transaction
+- View Transaction History
+- View Dashboard & Reports
 
 ## Mermaid Diagram
 ```mermaid
 graph TD
-    User --> AddIncome
-    User --> AddExpense
-    User --> ViewBalance
-    User --> ViewReports
-    User --> CategorizeTransactions
-    User --> SaveData
-    User --> LoadData
+    User --> RegisterAccount
+    User --> Login
+    
+    User --> AddTransaction
+    User --> EditTransaction
+    User --> DeleteTransaction
+    User --> ViewHistory
+    User --> ViewDashboard
+
+    %% Note: Transactions imply categorization and selecting payment methods
+```
